@@ -23,8 +23,13 @@ neuron_positions = [[gen_coord(), gen_coord()] for i in range(NUM_NEURONS)] #Thi
 
 print neuron_positions
 
-for i in neuron_positions: #This should just print the coords of each neuron one at a time
-	print i 
-	
-	print i[0] #The x-coord of the current neuron
-	print i[1] #The y-coord of the current neuron
+for i in neuron_positions: 		#iterate over neuron_positions to set the base neuron from which to calculate radius to other neurons
+	for j in range(1,3): 		#counter to select a neuron to calculate radius from the base neuron
+								#need to start range from '1' to exclude the base neuron
+		base_neuron_x = i[0] 	#the base neuron (x-coord), which starts from the 1st neuron and then moves to the next neuron each loop
+		compare_neuron_x = neuron_positions[j][0] #the comparison neuron (y-coord), which starts from the neuron after the base neuron until the last neuron
+		print x1, x2
+		
+		base_neuron_y = i[1] 
+		compare_neuron_y = neuron_positions[j][1]
+		print y1,y2
