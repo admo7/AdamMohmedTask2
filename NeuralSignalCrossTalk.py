@@ -27,13 +27,12 @@ k = 1 #need a second counter to shift the comparison neurons start point across 
 
 conflict = [] #list of which elements in neuron_positions are conflicting, i.e which neurons are causing a conflict
 
-for i in neuron_positions: 		#iterate over neuron_positions to set the base neuron from which to calculate radius to other neurons
+for i in neuron_positions: #iterate over neuron_positions to set the base neuron from which to calculate radius to other neurons
 
-	for j in range(k,3): 		#counter to select a neuron to calculate radius from the base neuron
-								#need to start range from '1' to exclude the base neuron
-								#using 'k' as a second counter as explained above
+	for j in range(k, NUM_NEURONS): #selects neurons from 1 after the base neuron to the end of the neuron_positions list to compare with the base neuron
+								    #using 'k' as explained above
 								
-		base_neuron_x = i[0] 	#the base neuron (x-coord), which starts from the 1st neuron and then moves to the next neuron each loop
+		base_neuron_x = i[0] #the base neuron (x-coord), which starts from the 1st neuron and then moves to the next neuron each loop
 		
 		compare_neuron_x = neuron_positions[j][0] #the comparison neuron (x-coord), which starts from the neuron after the base neuron until the last neuron
 		
