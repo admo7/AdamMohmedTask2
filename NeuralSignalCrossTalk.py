@@ -25,6 +25,8 @@ print neuron_positions
 
 k = 1 #need a second counter to shift the comparison neurons start point across by 1 to avoid overlap with the base neuron when restarting the loop
 
+conflict = [] #list of which elements in neuron_positions are conflicting, i.e which neurons are causing a conflict
+
 for i in neuron_positions: 		#iterate over neuron_positions to set the base neuron from which to calculate radius to other neurons
 
 	for j in range(k,3): 		#counter to select a neuron to calculate radius from the base neuron
@@ -45,8 +47,14 @@ for i in neuron_positions: 		#iterate over neuron_positions to set the base neur
 		
 		radius = ((x ** 2) + (y ** 2)) ** 0.5 #calculate the radius between the base neuron and the comparison neuron
 		
-		print radius
+		if radius < 100000: #set a conflict radius of 100000 for testing purposes to ensure conflicts are seen
 		
-	k += 1  
+			conflict.append(k-1) #appends the base neuron's position in the neuron_positions list to the conflict list
+			
+			conflict.append(k) #appends the comparison neuron's position in the neuron_positions list to the conflict list
+			
+	k += 1
 	
-	
+print conflict 
+
+print len(conflict) #gives the total number of neurons which are in a conflicted state
