@@ -28,8 +28,8 @@ for i in neuron_positions: 		#iterate over neuron_positions to set the base neur
 								#need to start range from '1' to exclude the base neuron
 		base_neuron_x = i[0] 	#the base neuron (x-coord), which starts from the 1st neuron and then moves to the next neuron each loop
 		compare_neuron_x = neuron_positions[j][0] #the comparison neuron (y-coord), which starts from the neuron after the base neuron until the last neuron
-		print x1, x2
+		print base_neuron_x, compare_neuron_x
 		
 		base_neuron_y = i[1] 
 		compare_neuron_y = neuron_positions[j][1]
-		print y1,y2
+		print base_neuron_y, compare_neuron_y
