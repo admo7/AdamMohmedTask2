@@ -41,4 +41,4 @@ for i in neuron_positions: 		#iterate over neuron_positions to set the base neur
 		compare_neuron_y = neuron_positions[j][1]
 		print base_neuron_y, compare_neuron_y
 		
-		k += 1  
+	k += 1  
