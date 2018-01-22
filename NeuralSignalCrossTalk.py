@@ -58,3 +58,9 @@ for i in neuron_positions: 		#iterate over neuron_positions to set the base neur
 print conflict 
 
 print len(conflict) #gives the total number of neurons which are in a conflicted state
+
+conflict = set(conflict) #removes any repeated neurons, as we already know they are in a conflicted state if they already appear in the list
+
+print conflict
+
+print len(conflict)
