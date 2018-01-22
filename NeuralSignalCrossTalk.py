@@ -35,11 +35,17 @@ for i in neuron_positions: 		#iterate over neuron_positions to set the base neur
 		
 		compare_neuron_x = neuron_positions[j][0] #the comparison neuron (x-coord), which starts from the neuron after the base neuron until the last neuron
 		
-		print base_neuron_x, compare_neuron_x
-		
 		base_neuron_y = i[1] 
 		compare_neuron_y = neuron_positions[j][1]
-		print base_neuron_y, compare_neuron_y
+		
+		x = abs(compare_neuron_x - base_neuron_x) #calculate difference in x values between the two selected neurons
+												  #need abs() to use the absolute value when calculating the radius
+												  
+		y = abs(compare_neuron_y - base_neuron_y) #calculate difference in y values between the two selected neurons
+		
+		radius = ((x ** 2) + (y ** 2)) ** 0.5 #calculate the radius between the base neuron and the comparison neuron
+		
+		print radius
 		
 	k += 1  
 	
