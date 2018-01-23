@@ -9,19 +9,30 @@ CONFLICT_RADIUS = 500 #nanometers
  
 def check_for_conflicts(nerves, conflict_radius):
 	
-	start = time.time() #set start time of code
-	k = 1 #need a second counter to shift the comparison neurons start point across by 1 to avoid overlap with the base neuron when restarting the loop
-	      #see later in the code for how it is used
+	start = time.time()
 	conflict = [] #list of which elements in neuron_positions are causing a conflict
+	neuron_dict = {} #initialise the dictionary of neurons
 
-	for i in nerves: #iterate over neuron_positions to set the base neuron from which to calculate radius to other neurons
-		for j in xrange(k, NUM_NEURONS): #selects neurons from 1 after the base neuron to the end of the neuron_positions list to compare with the base neuron
-			radius = (((abs(neuron_positions[j][0] - i[0])) ** 2) + ((abs(neuron_positions[j][1] - i[1])) ** 2)) ** 0.5 #calculate the radius between the base neuron and the comparison neuron
-			if radius < conflict_radius: 
-				conflict.append(k-1) #appends the base neuron's position in the neuron_positions list to the conflict list
-				conflict.append(k) #appends the comparison neuron's position in the neuron_positions list to the conflict list
-		k += 1
+	for neuron, coordinates in enumerate(nerves, 1): #enumerate each neuron position with a no.1-10000 and use this to create a dict
+		neuron_dict[neuron] = coordinates #each neuron is now selectable according to its position in the original list from gen_coord()
+
+	for base in range(1, len(neuron_dict)):  #iterate over the dictionary of neurons, selecting a base neuron for each run of this loop
+		for compare in range(base + 1, len(neuron_dict)+1): #iterate over the remaining neurons from which to calculate radii to the base neuron
+			x = abs(neuron_dict[compare][0] - neuron_dict[base][0]) #calc x distance between the two neurons
+			y = abs(neuron_dict[compare][1] - neuron_dict[base][1]) #calc y distance between the two neurons
+			r = ((x**2)+(y**2))**0.5 #calculate the radius 
+			if r < conflict_radius: 
+				conflict.append(base) 
+				conflict.append(compare) #appends both neurons' positions to a list of neurons that cause conflict
 	
-	conflict = set(conflict) #removes any repeated neurons, as we already know they are in a conflicted state if they already appear in the list
-	print time.time()-start #shows time taken for code to run
-	return len(conflict)
+	print time.time() - start #show time taken to run this function
+	return len(set(conflict)) #set() removes neurons that appear more than once in the conflict list, to give a number of neurons in a conflicted state, not just no. of conflicts
+	
+def gen_coord():
+	return int(random.random() * NERVE_SIZE)
+	
+
+if __name__ == '__main__':
+	neuron_positions = [[gen_coord(), gen_coord()] for i in range(NUM_NEURONS)]
+	n_conflicts = check_for_conflicts(neuron_positions, CONFLICT_RADIUS)
+print " Neurons in conflict :{}".format (n_conflicts)
