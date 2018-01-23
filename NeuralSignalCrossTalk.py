@@ -25,3 +25,12 @@ def check_for_conflicts(nerves, conflict_radius):
 	conflict = set(conflict) #removes any repeated neurons, as we already know they are in a conflicted state if they already appear in the list
 	print time.time()-start #shows time taken for code to run
 	return len(conflict)
+	
+
+def gen_coord():
+	return int(random.random() * NERVE_SIZE)
+
+if __name__ == '__main__':
+	neuron_positions = [[gen_coord(), gen_coord()] for i in range(NUM_NEURONS)]
+	n_conflicts = check_for_conflicts(neuron_positions, CONFLICT_RADIUS)
+	print " Neurons in conflict :{}".format (n_conflicts)
