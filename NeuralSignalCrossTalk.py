@@ -3,7 +3,7 @@ import time
 import random
 random.seed(1) #Setting random number generator seed for repeatability
 
-NUM_NEURONS = 10000 #Start with a small no for testing, use original 10000 later
+NUM_NEURONS = 5000 #Start with a small no for testing, use original 10000 later
 NERVE_SIZE = 128000 #nanometers 
 CONFLICT_RADIUS = 500 #nanometers
  
@@ -20,7 +20,7 @@ if __name__ == '__main__':
 	print " Neurons in conflict :{}".format (n_conflicts)
 '''
 
-neuron_positions = [[gen_coord(), gen_coord()] for i in range(NUM_NEURONS)] #This gives the coords of each neuron in a 2D list
+neuron_positions = [[gen_coord(), gen_coord()] for i in xrange(NUM_NEURONS)] #This gives the coords of each neuron in a 2D list
 
 #print neuron_positions
 
