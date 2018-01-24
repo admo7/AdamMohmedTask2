@@ -1,6 +1,0 @@
-Please see the NeuralSignalCrossTalk.py file in both the Final-v1 and Final-v2 for 
-slightly different solutions.
-
-The difference being I've used a dictionary to help me with the solution.
-
-Final-v1 runs slightly faster though at just under 5mins.
